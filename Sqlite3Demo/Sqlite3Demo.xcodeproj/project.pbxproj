@@ -17,6 +17,7 @@
 		ECF98D1B1CCA04F4004CF792 /* Sqlite3DemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF98D1A1CCA04F4004CF792 /* Sqlite3DemoUITests.m */; };
 		ECF98D2A1CCA057E004CF792 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF98D291CCA057E004CF792 /* DBManager.m */; };
 		ECF98D2C1CCA070C004CF792 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF98D2B1CCA070C004CF792 /* libsqlite3.tbd */; };
+		ECF98D2F1CCA4B84004CF792 /* People.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF98D2E1CCA4B84004CF792 /* People.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		ECF98D281CCA057E004CF792 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		ECF98D291CCA057E004CF792 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		ECF98D2B1CCA070C004CF792 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		ECF98D2D1CCA4B84004CF792 /* People.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = People.h; sourceTree = "<group>"; };
+		ECF98D2E1CCA4B84004CF792 /* People.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = People.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +115,8 @@
 				ECF98CF91CCA04F4004CF792 /* AppDelegate.m */,
 				ECF98CFB1CCA04F4004CF792 /* ViewController.h */,
 				ECF98CFC1CCA04F4004CF792 /* ViewController.m */,
+				ECF98D2D1CCA4B84004CF792 /* People.h */,
+				ECF98D2E1CCA4B84004CF792 /* People.m */,
 				ECF98CFE1CCA04F4004CF792 /* Main.storyboard */,
 				ECF98D281CCA057E004CF792 /* DBManager.h */,
 				ECF98D291CCA057E004CF792 /* DBManager.m */,
@@ -281,6 +286,7 @@
 			files = (
 				ECF98CFD1CCA04F4004CF792 /* ViewController.m in Sources */,
 				ECF98CFA1CCA04F4004CF792 /* AppDelegate.m in Sources */,
+				ECF98D2F1CCA4B84004CF792 /* People.m in Sources */,
 				ECF98CF71CCA04F4004CF792 /* main.m in Sources */,
 				ECF98D2A1CCA057E004CF792 /* DBManager.m in Sources */,
 			);

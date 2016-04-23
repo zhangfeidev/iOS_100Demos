@@ -43,7 +43,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="4VZ-9b-phF">
                             <connections>
-                                <segue destination="Uxe-Js-KG1" kind="show" id="o0m-gx-XMr"/>
+                                <segue destination="Uxe-Js-KG1" kind="show" identifier="add" id="o0m-gx-XMr"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -145,13 +145,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v61-0G-lAg">
-                                <rect key="frame" x="238" y="128" width="70" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.40717796810000001" blue="0.41359564360000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="筛选">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mhN-oO-hru">
                                 <rect key="frame" x="238" y="197" width="69" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.40717796810000001" blue="0.41359564360000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -167,6 +160,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v61-0G-lAg">
+                                <rect key="frame" x="238" y="128" width="70" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.40717796810000001" blue="0.41359564360000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="筛选">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

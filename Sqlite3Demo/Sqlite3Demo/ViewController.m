@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "People.h"
+#import "DBManager.h"
 
 @interface ViewController ()
 
@@ -42,4 +44,7 @@
     return cell;
 }
 
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+    return YES;
+}
 @end
