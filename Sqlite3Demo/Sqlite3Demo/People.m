@@ -22,7 +22,7 @@
 + (instancetype)initPeopleWithDictionary:(NSDictionary *)dic{
     People *people = [[People alloc] init];
     people.name = [dic valueForKey:@"name"];
-    people.telphoneNum = [dic valueForKey:@"telPhone"];
+    people.telphoneNum = [dic valueForKey:@"telphoneNum"];
     people.city = [dic valueForKey:@"city"];
     return people;
 }

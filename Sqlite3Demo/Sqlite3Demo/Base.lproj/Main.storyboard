@@ -56,10 +56,10 @@
             </objects>
             <point key="canvasLocation" x="881" y="236"/>
         </scene>
-        <!--View Controller-->
+        <!--Add View Controller-->
         <scene sceneID="poe-XQ-4VB">
             <objects>
-                <viewController id="Uxe-Js-KG1" sceneMemberID="viewController">
+                <viewController id="Uxe-Js-KG1" customClass="AddViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gcb-ER-rBg"/>
                         <viewControllerLayoutGuide type="bottom" id="y06-cj-r5j"/>
@@ -73,7 +73,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tel：" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Irf-Ow-j8i">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="TelphoneNum：" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Irf-Ow-j8i">
                                 <rect key="frame" x="9" y="137" width="305" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -84,6 +84,9 @@
                                 <state key="normal" title="add">
                                     <color key="titleColor" red="1" green="0.99180524341418319" blue="0.97940852750816731" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="add:" destination="Uxe-Js-KG1" eventType="touchUpInside" id="jzS-8p-WQP"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City：" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SC2-SI-PYI">
                                 <rect key="frame" x="11" y="186" width="305" height="30"/>
@@ -114,15 +117,20 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="self.title" value="添加联系人"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="city" destination="SC2-SI-PYI" id="CbR-jz-ZJX"/>
+                        <outlet property="name" destination="qFV-fN-apR" id="WqK-iC-4gB"/>
+                        <outlet property="telphoneNum" destination="Irf-Ow-j8i" id="UHg-g0-Xo2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bBF-JP-Sol" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1355" y="-174"/>
+            <point key="canvasLocation" x="1319" y="-192"/>
         </scene>
-        <!--View Controller-->
+        <!--Filter View Controller-->
         <scene sceneID="4F1-Sh-LBz">
             <objects>
-                <viewController id="tm1-JF-BNR" sceneMemberID="viewController">
+                <viewController id="tm1-JF-BNR" customClass="FilterViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xh9-hD-z4g"/>
                         <viewControllerLayoutGuide type="bottom" id="9GY-Sd-jF0"/>
@@ -151,6 +159,9 @@
                                 <state key="normal" title="筛选">
                                     <color key="titleColor" red="1" green="0.99180524339999998" blue="0.97940852749999996" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="filterByCount:" destination="tm1-JF-BNR" eventType="touchUpInside" id="Hw8-49-lEt"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="按照条数筛选" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jvd-u0-fEE">
                                 <rect key="frame" x="20" y="198" width="204" height="30"/>
@@ -166,6 +177,9 @@
                                 <state key="normal" title="筛选">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="filterByCity:" destination="tm1-JF-BNR" eventType="touchUpInside" id="ptt-7k-2pr"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -207,6 +221,11 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="self.title" value="筛选"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="cityFilter" destination="ggn-Fj-2bc" id="EXZ-Qu-B5v"/>
+                        <outlet property="countFilter" destination="jvd-u0-fEE" id="pBs-RF-0RJ"/>
+                        <outlet property="errorInfo" destination="LZn-r8-VDC" id="n8c-Xg-sam"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5T0-tp-4mT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

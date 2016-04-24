@@ -65,9 +65,9 @@ static sqlite3 *db;
         sqlite3_close(db);
         return NO;
     }
-    
-    NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ (name, telPhone, city) VALUES(?, ?, ?)",TABLE_NAME];
-    sqlite3_stmt *stmt;
+
+    NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@ (name, telphoneNum, city) VALUES(?, ?, ?)",TABLE_NAME];
+    sqlite3_stmt *stmt = nil;
     if (sqlite3_prepare_v2(db, [sql UTF8String], -1, &stmt, NULL) == SQLITE_OK) {
         sqlite3_bind_text(stmt, 1, [people.name UTF8String], -1, NULL);
         sqlite3_bind_text(stmt, 2, [people.telphoneNum UTF8String], -1, NULL);
@@ -83,9 +83,13 @@ static sqlite3 *db;
     }else{
         NSLog(@"插入数据失败,sqlite3_prepare_v2.error.");
     }
-    sqlite3_finalize(stmt);
+    int finalizeStatus = sqlite3_finalize(stmt);
+    if (finalizeStatus == SQLITE_OK) {
+        [self closeDB];
+    }else{
+        NSLog(@"sqlite3_finalize error.%i",finalizeStatus);
+    }
     
-    [self closeDB];
     return isSuccess;
 }
 
@@ -213,31 +217,61 @@ static sqlite3 *db;
 //    }
 //    return NO;
 //}
-- (BOOL)queryAllData{
-    if (sqlite3_open([[self getDBPath:DB_NAME] UTF8String], &db)) {
-        NSLog(@"查询数据失败,error：未能打开DB");
-        sqlite3_close(db);
-        return NO;
+
+- (NSArray *)queryAllPeople{
+    NSMutableArray *resultArray = [[NSMutableArray alloc] init];
+    if (![self openDB]) {
+        NSLog(@"获取全部数据失败,error：未能打开DB");
+        [self closeDB];
+        return resultArray;
     }
-    if (![self isExistTable:TABLE_NAME]) {
-        NSLog(@"查询数据失败,error:表不存在");
-        sqlite3_close(db);
-        return NO;
+    BOOL isTable = [self isExistTable:TABLE_NAME];
+    if (!isTable) {
+        NSLog(@"获取全部数据失败,error:表不存在");
+        [self closeDB];
+        return resultArray;
     }
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM %@]",TABLE_NAME];
+    NSString *sql = [NSString stringWithFormat:@"select * from %@",TABLE_NAME];
     sqlite3_stmt *stmt;
-    if (sqlite3_prepare_v2(db, [sql UTF8String], -1, &stmt, NULL) == SQLITE_OK) {
-        int temp = sqlite3_step(stmt);
-        if (temp == SQLITE_ROW) {
-            
-            NSLog(@"查询数据成功");
-            return YES;
-        }else{
-            NSLog(@"查询失败,error:%i",temp);
+    if (sqlite3_prepare_v2(db, [sql UTF8String ], -1, &stmt, NULL) == SQLITE_OK) {
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            People *people = [[People alloc] init];
+            people.name = [NSString stringWithCString:(char *)sqlite3_column_text(stmt, 1) encoding:NSUTF8StringEncoding];
+            people.telphoneNum = [NSString stringWithCString:(char *)sqlite3_column_text(stmt, 2) encoding:NSUTF8StringEncoding];
+            people.city = [NSString stringWithCString:(char *)sqlite3_column_text(stmt, 3) encoding:NSUTF8StringEncoding];
+            [resultArray addObject:people];
         }
+        NSLog(@"获取全部数据完毕");
+    }else{
+        NSLog(@"获取全部数据失败");
     }
-    return NO;
+    return resultArray;
 }
+//- (BOOL)queryAllData{
+//    if (sqlite3_open([[self getDBPath:DB_NAME] UTF8String], &db)) {
+//        NSLog(@"查询数据失败,error：未能打开DB");
+//        sqlite3_close(db);
+//        return NO;
+//    }
+//    if (![self isExistTable:TABLE_NAME]) {
+//        NSLog(@"查询数据失败,error:表不存在");
+//        sqlite3_close(db);
+//        return NO;
+//    }
+//    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM %@]",TABLE_NAME];
+//    sqlite3_stmt *stmt;
+//    if (sqlite3_prepare_v2(db, [sql UTF8String], -1, &stmt, NULL) == SQLITE_OK) {
+//        int temp = sqlite3_step(stmt);
+//        if (temp == SQLITE_ROW) {
+//            
+//            NSLog(@"查询数据成功");
+//            return YES;
+//        }else{
+//            NSLog(@"查询失败,error:%i",temp);
+//        }
+//    }
+//    return NO;
+//}
 
 #pragma mark - private methods
 //获取Document的路径
@@ -265,10 +299,13 @@ static sqlite3 *db;
         int temp = sqlite3_step(stmt);
         if (temp == SQLITE_ROW) {
             sqlite3_finalize(stmt);
+            NSLog(@"表存在");
             return YES;
         }else{
             NSLog(@"table is not exist ,result code is %d",temp);
         }
+    }else{
+        NSLog(@"判断表是否存在，prepare.error");
     }
     sqlite3_finalize(stmt);
     return NO;
@@ -304,14 +341,14 @@ static sqlite3 *db;
         return YES;
     }
     char *error;
-    NSString *sql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (ID INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)",TABLE_NAME];
+    NSString *sql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, telphoneNum TEXT, city TEXT)",TABLE_NAME];
     if (sqlite3_exec(db, [sql UTF8String], NULL, NULL, &error) == SQLITE_OK) {
         NSLog(@"建表成功");
-        sqlite3_close(db);
+        [self closeDB];
         return YES;
     }
     NSLog(@"建表失败,error:%s",error);
-    sqlite3_close(db);
+    [self closeDB];
     return NO;
 }
 //打开DB

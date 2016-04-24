@@ -10,7 +10,14 @@
 #import "People.h"
 #import "DBManager.h"
 
-@interface ViewController ()
+#import "AddViewController.h"
+#import "FilterViewController.h"
+
+@interface ViewController () <AddViewControllerDelegate,FilterViewControllerDelegate>
+
+@property (nonatomic, copy) NSArray *data;
+@property (nonatomic, strong) People *mode;
+@property (nonatomic, strong) DBManager *manager;
 
 @end
 
@@ -18,6 +25,8 @@
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.manager = [DBManager sharedDBManager];
+    self.data = [self.manager queryAllPeople];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -30,21 +39,33 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 30;
+    return self.data.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *rid=@"reuseIdentifier";
     UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
     if(cell==nil){
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:rid];
-        cell.textLabel.text = @"Tom";
-        cell.detailTextLabel.text = @"18123554322 | beijng";
     }
-    
+    _mode = self.data[indexPath.row];
+    cell.textLabel.text = _mode.name;
+    NSString *detailText = [NSString stringWithFormat:@"%@  |  %@",_mode.telphoneNum,_mode.city];
+    cell.detailTextLabel.text = detailText;
     return cell;
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
     return YES;
+}
+#pragma mark - AddViewController Delegate
+- (void)didAddContact{
+    self.data = [self.manager queryAllPeople];
+}
+#pragma mark - FilterViewController Delegate
+- (void)didFilterByCity:(NSString *)city{
+    
+}
+- (void)didFilterByConut:(NSString *)count{
+    
 }
 @end

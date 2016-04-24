@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ECAA66F21CCC871800D7FA74 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAA66F11CCC871800D7FA74 /* AddViewController.m */; };
+		ECAA66F51CCC880100D7FA74 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECAA66F41CCC880100D7FA74 /* FilterViewController.m */; };
 		ECF98CF71CCA04F4004CF792 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF98CF61CCA04F4004CF792 /* main.m */; };
 		ECF98CFA1CCA04F4004CF792 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF98CF91CCA04F4004CF792 /* AppDelegate.m */; };
 		ECF98CFD1CCA04F4004CF792 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF98CFC1CCA04F4004CF792 /* ViewController.m */; };
@@ -38,6 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		ECAA66F01CCC871800D7FA74 /* AddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
+		ECAA66F11CCC871800D7FA74 /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
+		ECAA66F31CCC880100D7FA74 /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
+		ECAA66F41CCC880100D7FA74 /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
 		ECF98CF21CCA04F3004CF792 /* Sqlite3Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sqlite3Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECF98CF61CCA04F4004CF792 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		ECF98CF81CCA04F4004CF792 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -115,6 +121,10 @@
 				ECF98CF91CCA04F4004CF792 /* AppDelegate.m */,
 				ECF98CFB1CCA04F4004CF792 /* ViewController.h */,
 				ECF98CFC1CCA04F4004CF792 /* ViewController.m */,
+				ECAA66F01CCC871800D7FA74 /* AddViewController.h */,
+				ECAA66F11CCC871800D7FA74 /* AddViewController.m */,
+				ECAA66F31CCC880100D7FA74 /* FilterViewController.h */,
+				ECAA66F41CCC880100D7FA74 /* FilterViewController.m */,
 				ECF98D2D1CCA4B84004CF792 /* People.h */,
 				ECF98D2E1CCA4B84004CF792 /* People.m */,
 				ECF98CFE1CCA04F4004CF792 /* Main.storyboard */,
@@ -286,7 +296,9 @@
 			files = (
 				ECF98CFD1CCA04F4004CF792 /* ViewController.m in Sources */,
 				ECF98CFA1CCA04F4004CF792 /* AppDelegate.m in Sources */,
+				ECAA66F21CCC871800D7FA74 /* AddViewController.m in Sources */,
 				ECF98D2F1CCA4B84004CF792 /* People.m in Sources */,
+				ECAA66F51CCC880100D7FA74 /* FilterViewController.m in Sources */,
 				ECF98CF71CCA04F4004CF792 /* main.m in Sources */,
 				ECF98D2A1CCA057E004CF792 /* DBManager.m in Sources */,
 			);
