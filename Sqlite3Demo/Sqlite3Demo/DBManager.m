@@ -16,10 +16,16 @@
 #define COMMIT_TRANS "commit transaction"    //编辑事务
 #define ROLLBACK_TRANS "rollback transaction"//回滚事务
 
+@interface DBManager(){
+    sqlite3 *db;
+}
+
+@end
+
 @implementation DBManager
 
 static DBManager *sharedInstance;
-static sqlite3 *db;
+
 
 #pragma mark - life cycle
 + (instancetype)sharedDBManager{
@@ -299,6 +305,7 @@ static sqlite3 *db;
         int temp = sqlite3_step(stmt);
         if (temp == SQLITE_ROW) {
             sqlite3_finalize(stmt);
+            [self closeDB];
             NSLog(@"表存在");
             return YES;
         }else{
@@ -308,6 +315,7 @@ static sqlite3 *db;
         NSLog(@"判断表是否存在，prepare.error");
     }
     sqlite3_finalize(stmt);
+    [self closeDB];
     return NO;
 }
 //创建DB
@@ -335,11 +343,11 @@ static sqlite3 *db;
         sqlite3_close(db);
         return NO;
     }
-    if ([self isExistTable:TABLE_NAME]) {
-        NSLog(@"表已经存在");
-        sqlite3_close(db);
-        return YES;
-    }
+//    if ([self isExistTable:TABLE_NAME]) {
+//        NSLog(@"表已经存在");
+//        sqlite3_close(db);
+//        return YES;
+//    }
     char *error;
     NSString *sql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, telphoneNum TEXT, city TEXT)",TABLE_NAME];
     if (sqlite3_exec(db, [sql UTF8String], NULL, NULL, &error) == SQLITE_OK) {
@@ -360,12 +368,12 @@ static sqlite3 *db;
     [self closeDBWithDB:db];
     db = NULL;
 }
-- (BOOL)openDBWithPath:(NSString *)path db:(sqlite3 *)db{
+- (BOOL)openDBWithPath:(NSString *)path db:(sqlite3 *)database{
 #ifdef DEBUG
     NSLog(@"openDataBase begin:%@", path);
 #endif
-    if (sqlite3_open([path UTF8String], &db) != SQLITE_OK) {
-        sqlite3_close(db);
+    if (sqlite3_open([path UTF8String], &database) != SQLITE_OK) {
+        sqlite3_close(database);
 #ifdef DEBUG
         NSLog(@"database open fail.");
 #endif
@@ -376,12 +384,12 @@ static sqlite3 *db;
 #endif
     return YES;
 }
-- (void)closeDBWithDB:(sqlite3 *)db{
-    if (db != NULL) {
+- (void)closeDBWithDB:(sqlite3 *)database{
+    if (database != NULL) {
 #ifdef DEBUG
         NSLog(@"closeDataBase.");
 #endif
-        int rst = sqlite3_close(db);
+        int rst = sqlite3_close(database);
         if (rst == SQLITE_OK) {
 #ifdef DEBUG
             NSLog(@"CLOSE DATABASE OK");
